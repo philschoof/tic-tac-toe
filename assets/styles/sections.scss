@@ -1,0 +1,136 @@
+.top-bar {
+  border-bottom: $border-gray;
+  box-sizing: border-box;
+  height: 50px;
+  padding: 0 25px;
+  width: 100%;
+}
+
+.top-button {
+  border: $border-black;
+  border-radius: 5%;
+  box-sizing: border-box;
+  float: right;
+  height: 100%;
+  margin-left: 50px;
+  padding-top: 15px;
+  position: relative;
+  text-align: center;
+  top: -5px;
+  transition: .25s ease;
+  width: 70px;
+}
+
+.title {
+  float: left;
+  width: 100px;
+
+}
+
+.sign-up:hover {
+  background: $sign-up;
+  color: $white;
+}
+
+.login:hover {
+  background: $login-hover;
+  color: $white;
+}
+
+.content-container {
+  border-left: $border-gray;
+  border-right: $border-gray;
+  margin: $margin-centered;
+  max-width: 960px;
+  padding: 0 15px;
+  position: relative;
+  top: 25px;
+}
+
+.user-box {
+  border-radius: 5%;
+  box-sizing: border-box;
+  font-size: 30px;
+  height: 150px;
+  padding: 10px;
+  transition: .25s ease;
+  width: 200px;
+}
+
+.player1-box {
+  background: $color-choice-green;
+  float: left;
+}
+
+.player2-box {
+  float: right;
+  text-align: right;
+}
+
+.top-box {
+  border: $border-black;
+  border-radius: 5%;
+  box-sizing: border-box;
+  clear: both;
+  font-size: 25px;
+  height: 45px;
+  margin: 25px auto;
+  opacity: 0;
+  padding: 4px;
+  text-align: center;
+  transition: .25s ease;
+  width: 25%;
+}
+
+
+table {
+  box-sizing: border-box;
+  color: $gray;
+  height: 400px;
+  margin: $margin-centered;
+  position: relative;
+  top: 15px;
+  width: 400px;
+}
+
+td {
+  border-radius: 5%;
+  font-size: 30px;
+  height: 40px;
+  text-align: center;
+  transition: .3s ease;
+  width: 40px;
+ }
+
+td:hover {
+  color: $white;
+ }
+
+
+.center-col {
+  border-left: $border-black;
+  border-right: $border-black;
+}
+
+.center-row {
+  border-bottom: $border-black;
+  border-top: $border-black;
+}
+
+
+.new-game-button {
+  display: block;
+  height: 25px;
+  margin: 20px auto;
+  position: relative;
+  top: 45px;
+  width: auto;
+}
+
+.player1 {
+  color: $color-choice-blue;
+}
+
+.player2 {
+  color: $color-choice-purple;
+}

@@ -1,20 +1,73 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
 
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+    </head>
+    <body>
+
+      <div class="top-bar">
+        <div class="top-button title">Tic Tac Toe</div>
+        <div class="top-button sign-up">Sign Up</div>
+        <div class="top-button login">Login</div>
+      </div>
+
+      <div class="content-container">
+
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="user-box player1-box">
+              <span class="player1-user-name"></span>
+              <br>
+              <br>
+              <span class="player1-symbol"></span>
+            </div>
+          </div>
+
+
+          <div class="col-xs-4">
+            <div class="user-box player2-box">
+              <span class="player2-user-name"></span>
+              <br>
+              <br>
+              <span class="player2-symbol"></span>
+            </div>
+          </div>
+        </div><!--close row-->
+
+
+
+        <div class="top-box"></div>
+
+
+      <div class="row">
+        <div class="col-xs-offset-3 col-xs-6">
+          <table>
+            <tr>
+              <td class ="available top-left" id="top-left"></td>
+              <td class="available center-col top-center" id="top-center"></td>
+              <td class ="available top-right" id="top-right"></td>
+            </tr>
+             <tr class="" >
+              <td class="available center-row center-left" id="center-left"></td>
+              <td class="available center-col center-row center-center" id="center-center"></td>
+              <td class="available center-row center-right" id="center-right"></td>
+            </tr>
+             <tr>
+              <td class ="available bottom-left" id="bottom-left"></td>
+              <td class="available center-col bottom-center" id="bottom-center"></td>
+              <td class ="available bottom-right" id="bottom-right"></td>
+            </tr>
+          </table>
+
+          <input type="submit" class="new-game-button" id="new-game-button" value="New Game">
+        </div><!--close col -->
+      </div><!--close row -->
+
+    </div><!--close content-container-->
+
     </body>
 </html>

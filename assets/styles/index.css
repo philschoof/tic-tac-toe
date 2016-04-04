@@ -1,0 +1,186 @@
+.top-bar{
+  width:100%;
+  height:50px;
+  border-bottom: 1px solid grey;
+  box-sizing: border-box;
+  padding:0 25px;
+
+}
+
+.top-button{
+  border:1px solid black;
+  width:70px;
+  text-align: center;
+  float:right;
+  height:100%;
+  box-sizing: border-box;
+  padding-top: 15px;
+  transition: .25s ease;
+  position: relative;
+  top:-5px;
+  border-radius: 5%;
+  margin-left: 50px;
+}
+
+.title{
+  float:left;
+
+}
+
+.sign-up:hover{
+  background: #3FBF3F;
+  color:white;
+}
+
+.login:hover{
+  background:#7F3FBF;
+  color:white;
+}
+
+.container{
+  position: relative;
+  top:25px;
+  max-width: 960px;
+  margin: 0 auto;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  padding:0 15px 0 15px;
+}
+
+.user-box{
+  height:150px;
+  width:200px;
+  font-size: 30px;
+  border-radius: 5%;
+  transition: .25s ease;
+  padding:10px;
+  box-sizing: border-box;
+}
+
+.player1-box{
+  float: left;
+  background: green;
+}
+
+.player2-box{
+  float:right;
+  text-align: right;
+}
+
+.current-player{
+  color:white;
+}
+
+
+.top-box{
+  clear:both;
+  width:25%;
+  height:45px;
+  margin:25px auto;
+  text-align: center;
+  transition: .25s ease;
+  opacity: 0;
+  padding:4px;
+  border:1px solid black;
+  box-sizing: border-box;
+  border-radius: 5%;
+  font-size: 25px;
+}
+
+
+table{
+  position: relative;
+  top:15px;
+  margin:0 auto;
+  min-height:400px;
+  min-width:400px;
+  box-sizing: border-box;
+ }
+
+ td{
+   height:40px;
+   width:40px;
+   text-align: center;
+   transition: .3s ease;
+   border-radius: 5%;
+   font-size: 30px;
+ }
+
+
+.center-col{
+  border-left:1px solid black;
+  border-right:1px solid black;
+}
+
+
+.center-row{
+  border-top:1px solid black;
+  border-bottom:1px solid black;
+}
+
+.top-left:hover{
+  background:#BF3F3F ;
+  color:white;
+}
+
+.top-center:hover{
+  background: #BF7F3F;
+  color:white;
+}
+
+.top-right:hover{
+  background: #7FBF3F;
+  color:white;
+}
+
+.center-left:hover{
+  background:#3FBF3F;
+  color:white;
+}
+
+.center-center:hover{
+  background:#3FBF7F ;
+  color:white;
+}
+
+.center-right:hover{
+  background:#3F3FBF ;
+  color:white;
+}
+
+.bottom-left:hover{
+  background: #7F3FBF;
+  color:white;
+}
+
+.bottom-center:hover{
+  background:#BF3FBF ;
+  color:white;
+}
+
+.bottom-right:hover{
+  background: #262672;
+  color:white;
+}
+
+.new-game-button{
+  display: block;
+  width: 15%;
+  height: 25px;
+  margin: 0 auto;
+  position: relative;
+  top: 65px;
+}
+
+.player1{
+  color:blue;
+}
+.player2{
+  color:purple;
+}
+
+/*@media(max-width:450px ){
+  .user-box{
+    width:40%;
+  }
+}*/
