@@ -1,6 +1,7 @@
 'use strict';
 
 const app = require('../app-data.js');
+const users = require('../users.js');
 
 const signUpSuccess = (data) => {
   app.user = data.user;
@@ -13,6 +14,11 @@ const signInSuccess = (data) => {
   console.log("Signed in" + app.user);
   $('.change-password').show();
   $('.log-out').show();
+  if (users.player1.username === '') {
+    $('.player1-user-name').text(users.player1.username = app.user.email);
+  } else {
+    $('.player2-user-name').text(users.player2.username = app.user.email);
+  }
 };
 
 const failure = () => {
