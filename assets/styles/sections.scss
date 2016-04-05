@@ -28,7 +28,7 @@
 }
 
 .sign-up:hover {
-  background: $sign-up;
+  background: $sign-up-hover;
   color: $white;
 }
 
@@ -89,7 +89,7 @@ table {
   height: 400px;
   margin: $margin-centered;
   position: relative;
-  top: 15px;
+  top: 10px;
   width: 400px;
 }
 
@@ -117,14 +117,16 @@ td:hover {
   border-top: $border-black;
 }
 
-
 .new-game-button {
-  display: block;
-  height: 25px;
-  margin: 20px auto;
-  position: relative;
-  top: 45px;
-  width: auto;
+  border: $border-black;
+  border-radius: 5%;
+  box-sizing: border-box;
+  height: 50px;
+  margin: 40px auto;
+  padding-top: 15px;
+  text-align: center;
+  transition: .25s ease;
+  width: 100px;
 }
 
 .player1 {
