@@ -5,18 +5,26 @@
 
 // use require without a reference to ensure a file is bundled
 require('./example');
+
 let users = require('./users');
 let resources = require('./resources');
+let authEvents = require('./auth/events.js');
 
 $(() => {
+
+  authEvents.addHandlers();
+
   let turnCount = 0;
+  //move function
   $('td').on('click',function(){
   	let currentCell = $(this);
+    //checks if move is valid
     if(currentCell.hasClass('available')){
       turnCount ++;
       currentCell.addClass(users.currentPlayer.cssClass);
     	currentCell.removeClass('available');
       $(this).text(users.currentPlayer.symbol);
+      //winning conditions testing
       if(turnCount > 4 && users.winner === ''){
         resources.winCheck(resources.winArray);
         if(turnCount === 9 && users.winner === ''){
@@ -24,7 +32,7 @@ $(() => {
           $('.top-box').css('opacity', '1');
         }
       }
-
+      //switches currentPlayer
       if(users.winner === ''){
         $('.top-box').css('opacity', '0');
         $('.top-box').text('');
@@ -38,24 +46,21 @@ $(() => {
           $('.player2-box').css("background", "none");
         }
       }
-      if(turnCount === 8){
-
-      }
+      //if move in invalid
     }else{
       $('.top-box').css({'opacity': '1',
                         'background': users.currentPlayer.background});
       $('.top-box').text("Pick again");
-
     }
-  });
+  });//close move function
 
   //New game button
   $('#new-game-button').on('click', function(){
-    console.log('new game');
     users.currentPlayer = users.player1;
     users.winner = '';
     $('.player1-box').css("background", "users.player1.background");
     $('.player2-box').css("background", "none");
+    //resets board
     for (let i = 0; i < resources.board.length; i++) {
       resources.board[i].addClass('available');
       if(resources.board[i].hasClass(users.player1.cssClass)){
@@ -72,30 +77,8 @@ $(() => {
   });
 
   //top-button animation
+  resources.topButtonAnimation('.login', 'login-clicked', '.login-fields', '.sign-up');
+  resources.topButtonAnimation('.sign-up', 'sign-up-clicked', '.sign-up-fields', '.login');
 
 
-  resources.topButtonAnimation('.login', 'login-clicked', '.login-fields');
-  resources.topButtonAnimation('.sign-up', 'sign-up-clicked', '.sign-up-fields');
-
-  //login animation
-  // $('.login').on('click', function(){
-  //   $(this).addClass('login-clicked');
-  //   $('.login-fields').slideDown('fast', function(){
-  //     $('.content-container').on('click', function(){
-  //       $('.login-fields').slideUp('fast');
-  //       $('.login').removeClass('login-clicked');
-  //     });
-  //   });
-  // });
-
-  // //sign-up animation
-  // $('.sign-up').on('click', function(){
-  //   $(this).addClass('sign-up-clicked');
-  //   $('.sign-up-fields').slideDown('fast', function(){
-  //     $('.content-container').on('click', function(){
-  //       $('.sign-up-fields').slideUp('fast');
-  //       $('.sign-up').removeClass('sign-up-clicked');
-  //     });
-  //   });
-  // });
 });//close ready

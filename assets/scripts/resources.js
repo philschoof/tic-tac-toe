@@ -35,8 +35,7 @@ let hasUserClass = function(element){
 
 let winCheck = function(winArray){
     for (let i = 0; i < winArray.length; i++) {
-      if(winArray[i].every(hasUserClass)){
-        console.log("Win");
+      if(winArray[i].every(hasUserClass)) {
         users.winner = users.currentPlayer.username;
         $('.top-box').text(users.winner + " Wins!");
         $('.top-box').css({
@@ -47,7 +46,10 @@ let winCheck = function(winArray){
   }
 };
 
-const topButtonAnimation = function(button, clicked, fields) {
+
+
+
+const topButtonAnimation = function(button, clicked, fields, otherButton) {
   $(button).on('click', function() {
     $(this).addClass(clicked);
     $(this).css('height', '106%');
@@ -57,11 +59,14 @@ const topButtonAnimation = function(button, clicked, fields) {
         $(button).css('height', '100%');
         $(button).removeClass(clicked);
       });
+      $(otherButton).on('click', function() {
+        $(fields).slideUp('fast');
+        $(button).css('height', '100%');
+        $(button).removeClass(clicked);
+      });
     });
   });
 };
-
-
 
 module.exports = {
   board,
