@@ -8,6 +8,12 @@ const signUpSuccess = (data) => {
   console.log(data);
 };
 
+const signInSuccess = (data) => {
+  app.user = data.user;
+  console.log("Signed in" + data.user);
+  $('.change-password').show();
+};
+
 const failure = () => {
   console.log("fail");
 };
@@ -15,5 +21,6 @@ const failure = () => {
 
 module.exports = {
   signUpSuccess,
+  signInSuccess,
   failure
 };

@@ -82,7 +82,7 @@ body {
   border: $border-black;
   box-sizing: border-box;
   display: none;
-  height: 240px;
+  height: 230px;
   padding: 3px 10px;
   position: absolute;
   right: 15px;
@@ -98,6 +98,14 @@ body {
   height: 35px;
   margin: 15px 0;
   width: 90%;
+}
+
+.log-out {
+  display: none;
+}
+
+.change-password {
+  display: none;
 }
 
 .content-container {
@@ -120,28 +128,6 @@ body {
   transition: .25s ease;
   width: 200px;
 }
-
-.color-sample {
-  height: 5px;
-  width: 5px;
-}
-
-.green-sample {
-  background: $color-choice-green;
-}
-
-.red-sample {
-  background: $color-choice-red;
-}
-
-.blue-sample {
-  background: $color-choice-blue;
-}
-
-.purple-sample {
-  background: $color-choice-purple;
-}
-
 
 .player1-box {
   background: $color-choice-green;
@@ -218,11 +204,11 @@ td:hover {
 
 
 .player1 {
-  color: $color-choice-blue;
+  color: $color-choice-green;
 }
 
 .player2 {
-  color: $color-choice-purple;
+  color: $color-choice-red;
 }
 
 @media(max-width:460px){
@@ -230,18 +216,15 @@ td:hover {
     width: 100%;
   }
 
-  .top-bar {
-    border: 0;
+  .login,
+  .sign-up {
+    margin-left: 5px;
   }
 
   .user-box {
     width: 50%;
   }
 
-  .login,
-  .sign-up {
-    margin-left: 5px;
-  }
 
   table {
     height: 350px;

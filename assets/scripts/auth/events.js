@@ -12,6 +12,12 @@ const addHandlers = () => {
     authApi.signUp(authUi.signUpSuccess, authUi.failure, data);
   });
 
+  $('#login').on('submit', function (event){
+    let data = getFormFields(this);
+    event.preventDefault();
+    authApi.signIn(authUi.signInSuccess, authUi.failure, data);
+  });
+
 
 };
 
