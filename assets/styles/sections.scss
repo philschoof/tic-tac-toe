@@ -130,12 +130,12 @@ body {
 }
 
 .player1-box {
-  background: $color-choice-green;
+  background: $color-choice-player1;
   float: left;
 }
 
 .player2-box {
-  background: $color-choice-red;
+  background: $color-choice-player2;
   float: right;
   text-align: right;
 }
@@ -204,11 +204,11 @@ td:hover {
 
 
 .player1 {
-  color: $color-choice-green;
+  color: $color-choice-player1;
 }
 
 .player2 {
-  color: $color-choice-red;
+  color: $color-choice-player2;
 }
 
 @media(max-width:460px){

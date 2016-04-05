@@ -1,37 +1,37 @@
 .top-left:hover {
-  background: #bf3f3b;
+  background: $color-choice-1;
 }
 
 .top-center:hover {
-  background: #bf7f3f;
+  background: $color-choice-2;
 }
 
 .top-right:hover {
-  background: #7fbf3f;
+  background: $color-choice-3;
 }
 
 .center-left:hover {
-  background:#3fbf3f;
+  background:$color-choice-4;
 }
 
 .center-center:hover {
-  background: #3fbf7f;
+  background: $color-choice-5;
 }
 
 .center-right:hover {
-  background: #3f3fbf;
+  background: $color-choice-1;
 }
 
 .bottom-left:hover {
-  background: #7f3fbf;
+  background: $color-choice-2;
 }
 
 .bottom-center:hover {
-  background: #bf3fbf;
+  background: $color-choice-3;
 }
 
 .bottom-right:hover {
-  background: #262672;
+  background: $color-choice-4;
 }
 
 .new-game-button:hover{
