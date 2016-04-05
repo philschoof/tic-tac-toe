@@ -10,8 +10,9 @@ const signUpSuccess = (data) => {
 
 const signInSuccess = (data) => {
   app.user = data.user;
-  console.log("Signed in" + data.user);
+  console.log("Signed in" + app.user);
   $('.change-password').show();
+  $('.log-out').show();
 };
 
 const failure = () => {

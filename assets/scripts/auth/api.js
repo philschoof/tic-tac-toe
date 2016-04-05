@@ -19,7 +19,7 @@ const signIn = (success, failure, data) => {
     data,
   })
   .done(success)
-  .done(failure);
+  .fail(failure);
 };
 
 

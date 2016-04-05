@@ -3,14 +3,14 @@
 let winner = '';
 
 let player1 = {
-	username: 'Player 1', //ajax return
+	username: '', //ajax return
   symbol: 'X',  //jquery from drop down
   cssClass: 'player1',
   background:'#00a896' //jquery from drop down
 };
 
 let player2 = {
-  username: 'Player 2', //ajax return
+  username: '', //ajax return
   symbol: 'O', //jquery from drop down
   cssClass:'player2',
   background: '#7b435b' //jquery from drop down
