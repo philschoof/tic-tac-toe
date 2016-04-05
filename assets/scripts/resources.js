@@ -29,13 +29,11 @@ let winArray = [
  topRightDiagonalWin
 ];
 
-
-
-const hasUserClass = function(element){
+let hasUserClass = function(element){
   return element.hasClass(users.currentPlayer.cssClass);
 };
 
-const winCheck = function(winArray){
+let winCheck = function(winArray){
     for (let i = 0; i < winArray.length; i++) {
       if(winArray[i].every(hasUserClass)){
         console.log("Win");
@@ -50,7 +48,8 @@ const winCheck = function(winArray){
   }
 };
 
-module.export = {
+
+module.exports = {
   board,
   winArray,
   hasUserClass,

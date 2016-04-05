@@ -1,12 +1,19 @@
+body {
+  background: $default-background;
+  margin: 0;
+}
+
 .top-bar {
+  background: $top-bar;
   border-bottom: $border-gray;
   box-sizing: border-box;
   height: 50px;
-  padding: 0 25px;
+  padding: 2px 40px;
   width: 100%;
 }
 
 .top-button {
+  background: $default-background;
   border: $border-black;
   border-radius: 5%;
   box-sizing: border-box;
@@ -14,15 +21,14 @@
   height: 100%;
   margin-left: 50px;
   padding-top: 15px;
-  position: relative;
   text-align: center;
-  top: -5px;
   transition: .25s ease;
-  width: 70px;
+  width: 80px;
 }
 
 .title {
   float: left;
+  margin-left: 5px;
   width: 100px;
 
 }
@@ -50,12 +56,35 @@
 .user-box {
   border-radius: 5%;
   box-sizing: border-box;
-  font-size: 30px;
-  height: 150px;
+  font-size: 25px;
+  height: 100px;
+  margin-bottom: 15px;
   padding: 10px;
   transition: .25s ease;
   width: 200px;
 }
+
+.color-sample {
+  height: 5px;
+  width: 5px;
+}
+
+.green-sample {
+  background: $color-choice-green;
+}
+
+.red-sample {
+  background: $color-choice-red;
+}
+
+.blue-sample {
+  background: $color-choice-blue;
+}
+
+.purple-sample {
+  background: $color-choice-purple
+}
+
 
 .player1-box {
   background: $color-choice-green;
@@ -63,23 +92,24 @@
 }
 
 .player2-box {
+  background: $color-choice-red;
   float: right;
   text-align: right;
 }
 
 .top-box {
-  border: $border-black;
   border-radius: 5%;
   box-sizing: border-box;
   clear: both;
+  color: $default-background;
   font-size: 25px;
   height: 45px;
-  margin: 25px auto;
+  margin: 0 auto;
   opacity: 0;
   padding: 4px;
   text-align: center;
   transition: .25s ease;
-  width: 25%;
+  width: 175px;
 }
 
 
@@ -89,7 +119,7 @@ table {
   height: 400px;
   margin: $margin-centered;
   position: relative;
-  top: 10px;
+  top: 13px;
   width: 400px;
 }
 
@@ -126,7 +156,11 @@ td:hover {
   padding-top: 15px;
   text-align: center;
   transition: .25s ease;
-  width: 100px;
+  width: 105px;
+}
+
+.new-game-button span {
+  display: none;
 }
 
 .player1 {
@@ -135,4 +169,28 @@ td:hover {
 
 .player2 {
   color: $color-choice-purple;
+}
+
+@media(max-width:460px){
+  .container {
+    width: 100%;
+  }
+
+  .top-bar {
+    border: 0;
+  }
+
+  .user-box {
+    width: 50%;
+  }
+
+  .login,
+  .sign-up {
+    margin-left: 5px;
+  }
+
+  table {
+    height: 350px;
+    width: 100%;
+  }
 }

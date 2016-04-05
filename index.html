@@ -17,26 +17,42 @@
 
       <div class="content-container">
 
-        <div class="row">
-          <div class="col-xs-4">
             <div class="user-box player1-box">
               <span class="player1-user-name"></span>
               <br>
               <br>
-              <span class="player1-symbol"></span>
+              <form id="player1-preferences">
+                  <select name="player1-symbol" id="player1-symbol">
+                    <option value="X">X</option>
+                    <option value="O">O</option>
+                    <option value="#">#</option>
+                    <option value="*">*</option>
+                  </select>
+                  <select name="player1-color" id="player1-color">
+                    <option value="$color-choice-green"><div class="color-sample green-sample"></div></option>
+                    <option value="$color-choice-red"><div class="color-sample red-sample"></div></option>
+                    <option value="$color-choice-blue"><div class="color-sample blue-sample"></div></option>
+                    <option value="$color-choice-purple"><div class="color-sample purple-sample"></div></option>
+                  </select>
+                </form>
+              <span class="player1-symbol">
+              </span>
             </div>
-          </div>
 
-
-          <div class="col-xs-4">
             <div class="user-box player2-box">
               <span class="player2-user-name"></span>
               <br>
               <br>
-              <span class="player2-symbol"></span>
+              <span class="player2-symbol">
+                <select>
+                  <option value="X">X</option>
+                  <option value="O">O</option>
+                  <option value="#">#</option>
+                  <option value="*">*</option>
+                </select>
+              </span>
             </div>
-          </div>
-        </div><!--close row-->
+
 
 
 

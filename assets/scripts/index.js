@@ -12,12 +12,9 @@ $(() => {
   let turnCount = 0;
   $('td').on('click',function(){
   	let currentCell = $(this);
-    console.log(currentCell.attr('id'));
     if(currentCell.hasClass('available')){
       turnCount ++;
-      console.log(turnCount);
       currentCell.addClass(users.currentPlayer.cssClass);
-      console.log(users.currentPlayer.cssClass);
     	currentCell.removeClass('available');
       $(this).text(users.currentPlayer.symbol);
       if(turnCount > 4 && users.winner === ''){
@@ -33,11 +30,11 @@ $(() => {
         $('.top-box').text('');
         if(users.currentPlayer === users.player1){
           users.currentPlayer = users.player2;
-          $('.player2-box').css("background", "orange");
-          $('.player1-box').css("background", "none");
+          $('.player2-box').css('background', users.player2.background);
+          $('.player1-box').css('background', "none");
         }else{
           users.currentPlayer = users.player1;
-          $('.player1-box').css("background", "green");
+          $('.player1-box').css("background", users.player1.background);
           $('.player2-box').css("background", "none");
         }
       }
@@ -50,10 +47,27 @@ $(() => {
       $('.top-box').text("Pick again");
 
     }
-  });//cell placement
+  });
 
-
-
-
-
+  //New game button
+  $('#new-game-button').on('click', function(){
+    console.log('new game');
+    users.currentPlayer = users.player1;
+    users.winner = '';
+    $('.player1-box').css("background", "users.player1.background");
+    $('.player2-box').css("background", "none");
+    for (let i = 0; i < resources.board.length; i++) {
+      resources.board[i].addClass('available');
+      if(resources.board[i].hasClass(users.player1.cssClass)){
+        resources.board[i].removeClass(users.player1.cssClass);
+        resources.board[i].text('');
+      }else if(resources.board[i].hasClass(users.player2.cssClass)){
+        resources.board[i].removeClass(users.player2.cssClass);
+        resources.board[i].text('');
+    }
+    $('.top-box').text('');
+    $('.top-box').css('opacity', '0');
+    $('.new-game-button').css('background', '');
+  }
+  });
 });//close ready
