@@ -43,15 +43,30 @@ let winCheck = function(winArray){
           'opacity': '1',
         'background': users.currentPlayer.background});
         break;
-
     }
   }
 };
+
+const topButtonAnimation = function(button, clicked, fields) {
+  $(button).on('click', function() {
+    $(this).addClass(clicked);
+    $(this).css('height', '106%');
+    $(fields).slideDown('fast', function() {
+      $('.content-container').on('click', function() {
+        $(fields).slideUp('fast');
+        $(button).css('height', '100%');
+        $(button).removeClass(clicked);
+      });
+    });
+  });
+};
+
 
 
 module.exports = {
   board,
   winArray,
   hasUserClass,
-  winCheck
+  winCheck,
+  topButtonAnimation
 };

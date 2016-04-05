@@ -70,4 +70,32 @@ $(() => {
     $('.new-game-button').css('background', '');
   }
   });
+
+  //top-button animation
+
+
+  resources.topButtonAnimation('.login', 'login-clicked', '.login-fields');
+  resources.topButtonAnimation('.sign-up', 'sign-up-clicked', '.sign-up-fields');
+
+  //login animation
+  // $('.login').on('click', function(){
+  //   $(this).addClass('login-clicked');
+  //   $('.login-fields').slideDown('fast', function(){
+  //     $('.content-container').on('click', function(){
+  //       $('.login-fields').slideUp('fast');
+  //       $('.login').removeClass('login-clicked');
+  //     });
+  //   });
+  // });
+
+  // //sign-up animation
+  // $('.sign-up').on('click', function(){
+  //   $(this).addClass('sign-up-clicked');
+  //   $('.sign-up-fields').slideDown('fast', function(){
+  //     $('.content-container').on('click', function(){
+  //       $('.sign-up-fields').slideUp('fast');
+  //       $('.sign-up').removeClass('sign-up-clicked');
+  //     });
+  //   });
+  // });
 });//close ready

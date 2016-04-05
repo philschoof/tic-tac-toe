@@ -24,6 +24,7 @@ body {
   text-align: center;
   transition: .25s ease;
   width: 80px;
+  z-index: 1;
 }
 
 .title {
@@ -33,14 +34,70 @@ body {
 
 }
 
+.login:hover {
+  background: $login-hover;
+  color: $white;
+}
+
+.login-clicked {
+  background: $login-hover;
+  color: $white;
+}
+
+.login-fields {
+  background: $login-hover;
+  border: $border-black;
+  box-sizing: border-box;
+  display: none;
+  height: 200px;
+  padding: 3px 10px;
+  position: absolute;
+  right: 15px;
+  top: 50px;
+  width: 236px;
+  z-index: 1;
+}
+
+.login-fields input {
+  border-radius: 5%;
+  display: block;
+  font-size: 18px;
+  height: 35px;
+  margin: 15px 0;
+  width: 90%;
+}
+
 .sign-up:hover {
   background: $sign-up-hover;
   color: $white;
 }
 
-.login:hover {
-  background: $login-hover;
+.sign-up-clicked {
+  background: $sign-up-hover;
   color: $white;
+}
+
+.sign-up-fields {
+  background: $sign-up-hover;
+  border: $border-black;
+  box-sizing: border-box;
+  display: none;
+  height: 240px;
+  padding: 3px 10px;
+  position: absolute;
+  right: 15px;
+  top: 47px;
+  width: 236px;
+  z-index: 1;
+}
+
+.sign-up-fields input {
+  border-radius: 5%;
+  display: block;
+  font-size: 18px;
+  height: 35px;
+  margin: 15px 0;
+  width: 90%;
 }
 
 .content-container {
@@ -82,7 +139,7 @@ body {
 }
 
 .purple-sample {
-  background: $color-choice-purple
+  background: $color-choice-purple;
 }
 
 
@@ -159,9 +216,6 @@ td:hover {
   width: 105px;
 }
 
-.new-game-button span {
-  display: none;
-}
 
 .player1 {
   color: $color-choice-blue;
