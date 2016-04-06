@@ -13,7 +13,7 @@ const signInSuccess = (data) => {
   app.user = data.user;
   console.log("Signed in " + app.user.email);
   $('.change-password').show();
-  $('.log-out').show();
+  $('.sign-out').show();
   if (users.player1.username === '') {
     $('.player1-user-name').text(users.player1.username = app.user.email);
   } else {
@@ -24,6 +24,9 @@ const signInSuccess = (data) => {
 };
 
 const signOutSuccess = () => {
+  console.log('signed-out');
+  users.player1.username = '';
+  $('.player1-user-name').text('');
   app.user = null;
   console.log(app);
 };

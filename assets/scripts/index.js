@@ -16,7 +16,7 @@ $(() => {
 
   let turnCount = 0;
 
-  
+  // if(users.player1.username !== '' && users.player2.username !== ''){
 
   //move function
   $('td').on('click',function(){
@@ -84,6 +84,11 @@ $(() => {
   //top-button animation
   resources.topButtonAnimation('.login', 'login-clicked', '.login-fields', '.sign-up');
   resources.topButtonAnimation('.sign-up', 'sign-up-clicked', '.sign-up-fields', '.login');
-
+// } else {
+//   console.log('not signed in');
+//   $('.top-box').show('slow');
+//   $('.top-box').css('background','green');
+//
+// }
 
 });//close ready

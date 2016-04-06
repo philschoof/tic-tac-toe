@@ -4,16 +4,18 @@ let winner = '';
 
 let player1 = {
 	username: '', //ajax return
-  symbol: 'X',  //jquery from drop down
+  symbol: 'X',
   cssClass: 'player1',
-  background:'#00a896' //jquery from drop down
+  background:'#00a896',
+	authToken: ''
 };
 
 let player2 = {
   username: '', //ajax return
-  symbol: 'O', //jquery from drop down
+  symbol: 'O',
   cssClass:'player2',
-  background: '#7b435b' //jquery from drop down
+  background: '#7b435b',
+	authToken: ''
 };
 
 //sets player info in the view
