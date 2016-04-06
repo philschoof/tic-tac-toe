@@ -22,8 +22,20 @@ const signIn = (success, failure, data) => {
   .fail(failure);
 };
 
+const signOut = (success, failure) => {
+  $.ajax({
+    method: "DELETE",
+    url: app.api + '/sign-out/' + app.user.id,
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    },
+  }).done(success)
+  .fail(failure);
+};
+
 
 module.exports = {
   signUp,
-  signIn
+  signIn,
+  signOut
 };

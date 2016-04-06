@@ -18,6 +18,12 @@ const addHandlers = () => {
     authApi.signIn(authUi.signInSuccess, authUi.failure, data);
   });
 
+  $('.sign-out').on('click', function (event){
+  console.log('click');
+  event.preventDefault();
+  authApi.signOut(authUi.signOutSuccess, authUi.failure);
+  });
+
 
 };
 

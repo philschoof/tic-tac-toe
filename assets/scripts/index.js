@@ -15,6 +15,9 @@ $(() => {
   authEvents.addHandlers();
 
   let turnCount = 0;
+
+  
+
   //move function
   $('td').on('click',function(){
     let currentCell = $(this);
