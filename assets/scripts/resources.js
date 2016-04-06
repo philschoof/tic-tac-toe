@@ -3,9 +3,25 @@
 let users = require('./users');
 
 //board array
-let board = [$('#top-center'), $('#top-left'), $('#top-right'),
-              $('#center-center'), $('#center-left'), $('#center-right'),
-            $('#bottom-center'), $('#bottom-left'), $('#bottom-right')];
+
+// ordered board
+// let board = [$('#top-center'), $('#top-left'), $('#top-right'),
+//               $('#center-center'), $('#center-left'), $('#center-right'),
+//             $('#bottom-center'), $('#bottom-left'), $('#bottom-right')];
+
+let board = [$('#top-right'), $('#top-center'), $('#top-left'),
+               $('#center-left'), $('#center-center'), $('#center-right'),
+             $('#bottom-left'), $('#bottom-center'), $('#bottom-right')];
+
+let gameArray = ['','','','','','','','',''];
+
+let gameArrayMaker = function (board, gameArray) {
+  for (let i = 0; i < board.length; i++) {
+    if(board[i].text() !== 'undefined') {
+      gameArray[i] = board[i].text();
+    }
+  }
+};
 
 //Win outcomes
 let topRowWin = [$('#top-center'), $('#top-left'), $('#top-right')];
@@ -37,6 +53,7 @@ let winCheck = function(winArray){
     for (let i = 0; i < winArray.length; i++) {
       if(winArray[i].every(hasUserClass)) {
         users.winner = users.currentPlayer.username;
+        console.log(gameArray);
         $('.top-box').text(users.winner + " Wins!");
         $('.top-box').css({
           'opacity': '1',
@@ -47,7 +64,10 @@ let winCheck = function(winArray){
 };
 
 
-
+const topButtonSlide = function (button, clicked, fields) {
+    $(fields).slideUp('fast');
+    $(button).removeClass(clicked);
+};
 
 const topButtonAnimation = function(button, clicked, fields, otherButton) {
   $(button).on('click', function() {
@@ -64,14 +84,22 @@ const topButtonAnimation = function(button, clicked, fields, otherButton) {
         $(button).css('height', '100%');
         $(button).removeClass(clicked);
       });
+      $(fields).on('submit', function() {
+        topButtonSlide(button, clicked, fields);
+      });
     });
   });
 };
+
+
 
 module.exports = {
   board,
   winArray,
   hasUserClass,
   winCheck,
-  topButtonAnimation
+  topButtonAnimation,
+  topButtonSlide,
+  gameArray,
+  gameArrayMaker
 };

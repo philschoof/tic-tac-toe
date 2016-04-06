@@ -10,14 +10,16 @@ const signUpSuccess = (data) => {
 };
 
 const signInSuccess = (data) => {
-  app.user = data.user;
-  console.log("Signed in " + app.user.email);
+  // app.user = data.user;
+  // console.log("Signed in " + app.user.email);
   $('.change-password').show();
   $('.sign-out').show();
   if (users.player1.username === '') {
-    $('.player1-user-name').text(users.player1.username = app.user.email);
+    app.user1 = data.user;
+    $('.player1-user-name').text(users.player1.username = app.user1.email);
   } else {
-    $('.player2-user-name').text(users.player2.username = app.user.email);
+    app.user2 = data.user;
+    $('.player2-user-name').text(users.player2.username = app.user2.email);
     $('.sign-up').hide('slow');
     $('.login').hide('slow');
   }
@@ -25,10 +27,16 @@ const signInSuccess = (data) => {
 
 const signOutSuccess = () => {
   console.log('signed-out');
-  users.player1.username = '';
-  $('.player1-user-name').text('');
-  app.user = null;
-  console.log(app);
+    users.player1.username = '';
+    app.user1 = null;
+    $('.player1-user-name').text('');
+    users.player2.username = '';
+    app.user2 = null;
+    $('.player2-user-name').text('');
+};
+
+const boardUpdateSuccess = () => {
+  console.log('board updated');
 };
 
 const failure = () => {
@@ -40,5 +48,6 @@ module.exports = {
   signUpSuccess,
   signInSuccess,
   signOutSuccess,
+  boardUpdateSuccess,
   failure
 };

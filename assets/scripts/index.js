@@ -25,6 +25,8 @@ $(() => {
     if (currentCell.hasClass('available')) {
       turnCount ++;
       currentCell.addClass(users.currentPlayer.cssClass);
+      console.log(currentCell.text());
+      resources.gameArrayMaker(resources.board, resources.gameArray)
     	currentCell.removeClass('available');
       $(this).text(users.currentPlayer.symbol);
       //winning conditions testing

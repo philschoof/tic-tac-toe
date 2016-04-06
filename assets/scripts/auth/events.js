@@ -24,8 +24,17 @@ const addHandlers = () => {
   authApi.signOut(authUi.signOutSuccess, authUi.failure);
   });
 
+  $('.change-password').on('click', function (event) {
+    console.log('change-password');
+    event.preventDefault();
+  });
 
-};
+  $('td').on('click', function(event){
+    event.preventDefault();
+    authApi.boardUpdate(authUi.boardUpdateSuccess, authUi.failure);
+  });
+
+};//close addHandlers
 
 module.exports = {
   addHandlers,

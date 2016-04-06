@@ -25,12 +25,21 @@ const signIn = (success, failure, data) => {
 const signOut = (success, failure) => {
   $.ajax({
     method: "DELETE",
-    url: app.api + '/sign-out/' + app.user.id,
+    url: app.api + '/sign-out/' + app.user1.id,
     headers: {
-      Authorization: 'Token token=' + app.user.token
+      Authorization: 'Token token=' + app.user1.token
     },
   }).done(success)
   .fail(failure);
+
+$.ajax({
+  method: "DELETE",
+  url: app.api + '/sign-out/' + app.user2.id,
+  headers: {
+    Authorization: 'Token token=' + app.user2.token
+  },
+}).done(success)
+.fail(failure);
 };
 
 
