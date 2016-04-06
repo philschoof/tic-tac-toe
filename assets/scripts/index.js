@@ -14,6 +14,7 @@ $(() => {
 
   authEvents.addHandlers();
 
+
   let turnCount = 0;
 
   // if(users.player1.username !== '' && users.player2.username !== ''){
@@ -25,8 +26,7 @@ $(() => {
     if (currentCell.hasClass('available')) {
       turnCount ++;
       currentCell.addClass(users.currentPlayer.cssClass);
-      console.log(currentCell.text());
-      resources.gameArrayMaker(resources.board, resources.gameArray)
+      resources.gameArrayMaker(resources.board, resources.gameArray);
     	currentCell.removeClass('available');
       $(this).text(users.currentPlayer.symbol);
       //winning conditions testing

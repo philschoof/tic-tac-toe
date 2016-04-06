@@ -20,6 +20,7 @@ let gameArrayMaker = function (board, gameArray) {
     if(board[i].text() !== 'undefined') {
       gameArray[i] = board[i].text();
     }
+    return gameArray;
   }
 };
 

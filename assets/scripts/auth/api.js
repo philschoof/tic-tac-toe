@@ -33,18 +33,47 @@ const signOut = (success, failure) => {
   .fail(failure);
 
 $.ajax({
-  method: "DELETE",
-  url: app.api + '/sign-out/' + app.user2.id,
-  headers: {
-    Authorization: 'Token token=' + app.user2.token
-  },
-}).done(success)
-.fail(failure);
+    method: "DELETE",
+    url: app.api + '/sign-out/' + app.user2.id,
+    headers: {
+      Authorization: 'Token token=' + app.user2.token
+    },
+  }).done(success)
+  .fail(failure);
+  };
+
+const updateBoard = (success, failure, data, id) => {
+  $.ajax({
+    method: "PATCH",
+    url: app.api + id,
+    processData: false,
+    data
+  }).done(success)
+  .fail(failure);
 };
+
+const newGame = (success, failure, data) => {
+  console.log(app);
+  $.ajax({
+    method: "POST",
+    url: app.api + '/games',
+    data,
+    headers: {
+      Authorization: "Token token=" + app.user1.token
+    }
+  })
+  .done(success)
+  .fail(failure);
+  console.log("ran through");
+};
+
+
 
 
 module.exports = {
   signUp,
   signIn,
-  signOut
+  signOut,
+  updateBoard,
+  newGame
 };

@@ -17,9 +17,11 @@ const signInSuccess = (data) => {
   if (users.player1.username === '') {
     app.user1 = data.user;
     $('.player1-user-name').text(users.player1.username = app.user1.email);
+    users.player1.authToken = data.user.token;
   } else {
     app.user2 = data.user;
     $('.player2-user-name').text(users.player2.username = app.user2.email);
+    users.player1.authToken = data.user.token;
     $('.sign-up').hide('slow');
     $('.login').hide('slow');
   }
@@ -39,6 +41,10 @@ const boardUpdateSuccess = () => {
   console.log('board updated');
 };
 
+// const newGame = () => {
+//   let gameId = games.id;
+// };
+
 const failure = () => {
   console.log("fail");
 };
@@ -49,5 +55,7 @@ module.exports = {
   signInSuccess,
   signOutSuccess,
   boardUpdateSuccess,
+  // newGame,
+  // gameId,
   failure
 };
