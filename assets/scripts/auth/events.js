@@ -24,7 +24,6 @@ const addHandlers = () => {
 
 //sign-out
   $('.sign-out').on('click', function (event){
-  console.log('click');
   event.preventDefault();
   authApi.signOut(authUi.signOutSuccess, authUi.failure);
   });
@@ -32,7 +31,6 @@ const addHandlers = () => {
 
 //change-password
   $('#change-password').on('click', function (event) {
-    console.log('change-password');
     event.preventDefault();
     let data = getFormFields(this);
     authApi.changePassword(authUi.success, authUi.failure, data);
@@ -48,7 +46,6 @@ const addHandlers = () => {
 //get game
   $('#get-game-button').on('click', function(event) {
     event.preventDefault();
-    console.log("get clicked")
     authApi.getGames(authUi.getGamesSuccess, authUi.failure);
   });
 
