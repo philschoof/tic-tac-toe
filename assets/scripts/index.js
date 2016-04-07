@@ -35,11 +35,8 @@ $(() => {
         $(this).text(users.currentPlayer.symbol);
         currentCell.addClass(users.currentPlayer.cssClass);
         resources.gameArrayMaker(resources.board, resources.gameArray);
-        console.log(resources.gameArray);
         resources.sendIndex = currentCell.attr('data-index');
         resources.sendValue = currentCell.text();
-        console.log(resources.sendValue);
-        console.log(resources.sendIndex);
         authEvents.patchFunk();
         //winning conditions testing
         if (turnCount > 4 && users.winner === '') {
@@ -74,7 +71,14 @@ $(() => {
 
     //New game button
     $('#new-game-button').on('click', function () {
+      $('table').show('slow');
+      $('.top-box').css('opacity', '0');
       users.currentPlayer = users.player1;
+      $('.player1-box').css('background', users.player1.background);
+      if(users.winner !== ''){
+        $('#get-game-button').removeClass('bottom-buttons-hidden');
+
+      }
       users.winner = '';
       $('.player1-box').css("background", "users.player1.background");
       $('.player2-box').css("background", "none");
@@ -95,19 +99,17 @@ $(() => {
     }
     });
 
+
     //top-button animation
     resources.topButtonAnimation('.login', 'login-clicked', '.login-fields', '.sign-up');
     resources.topButtonAnimation('.sign-up', 'sign-up-clicked', '.sign-up-fields', '.login');
     resources.topButtonAnimation('.change-password', 'sign-up-clicked', '.change-password-fields', '.sign-out');
     $('.sign-out').on('click', function() {
+      $(this).hide();
+      $('.change-password').hide();
       $('.login').show();
       $('.sign-up').show();
     });
-  // } else {
-  //   console.log('not signed in');
-  //   $('.top-box').show('slow');
-  //   $('.top-box').css('background','green');
-  //
-  // }
+
 
 });//close ready

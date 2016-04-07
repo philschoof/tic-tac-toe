@@ -13,7 +13,6 @@ const signUpSuccess = (data) => {
 const signInSuccess = (data) => {
   // app.user = data.user;
   // console.log("Signed in " + app.user.email);
-  $('table').show('slow');
   $('.change-password').show();
   $('.sign-out').show();
   if (users.player1.username === '') {
@@ -21,13 +20,12 @@ const signInSuccess = (data) => {
     $('.player1-user-name').text(users.player1.username = app.user1.email);
     users.player1.id = data.user.id;
     users.player1.authToken = data.user.token;
-    users.player1.games++;
   } else {
     app.user2 = data.user;
     $('.player2-user-name').text(users.player2.username = app.user2.email);
     users.player2.id = data.user.id;
     users.player2.authToken = data.user.token;
-    users.player1.games++;
+    $('#new-game-button').removeClass('bottom-buttons-hidden');
     $('.sign-up').hide('slow');
     $('.login').hide('slow');
   }
@@ -62,7 +60,8 @@ const getGamesSuccess = (data) => {
   console.log(data.game.cells);
   resources.prevGameArray = data.game.cells;
   console.log(resources.prevGameArray);
-  $('.prev-winner').text((resources.prevGameFunk(resources.prevGameArray)));
+  $('.top-box').css('opacity', '1');
+  $('.top-box').text((resources.prevGameFunk(resources.prevGameArray)));
 };
 
 const failure = (error) => {

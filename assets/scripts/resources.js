@@ -34,12 +34,19 @@ let gameArrayMaker = function (board, gameArray) {
 let prevGameArray;
 let prevGameWinner;
 let prevGameFunk = function(prevGameArray) {
+  let x = 0;
+  let o = 0;
   for (let i = 0; i < prevGameArray.length; i++) {
     if (prevGameArray[i] === "X"){
-      prevGameWinner = 'X\'s won';
-    }else {
-      prevGameWinner = 'O\'s won';
+      x++;
+    }else if(prevGameArray[i] === "O") {
+      o++;
     }
+  }
+  if (x > o){
+    prevGameWinner = 'X\'s won';
+  }else {
+    prevGameWinner = 'O\'s won';
   }
   return prevGameWinner;
 };

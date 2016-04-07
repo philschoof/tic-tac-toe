@@ -209,6 +209,10 @@ td:hover {
   width: 105px;
 }
 
+.bottom-buttons-hidden {
+  display: none;
+}
+
 
 .player1 {
   color: $color-choice-player1;
@@ -244,8 +248,8 @@ td:hover {
   }
 
   .top-button {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .user-box {

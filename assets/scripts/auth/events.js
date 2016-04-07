@@ -48,6 +48,7 @@ const addHandlers = () => {
 //get game
   $('#get-game-button').on('click', function(event) {
     event.preventDefault();
+    console.log("get clicked")
     authApi.getGames(authUi.getGamesSuccess, authUi.failure);
   });
 
