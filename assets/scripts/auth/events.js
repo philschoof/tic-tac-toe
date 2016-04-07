@@ -4,6 +4,8 @@ const getFormFields = require('../../../lib/get-form-fields');
 
 const authApi = require('./api');
 const authUi = require('./ui');
+const resources = require('../resources');
+
 
 const addHandlers = () => {
 //sign-up
@@ -29,28 +31,33 @@ const addHandlers = () => {
 
 
 //change-password
-  $('.change-password').on('click', function (event) {
+  $('#change-password').on('click', function (event) {
     console.log('change-password');
     event.preventDefault();
+    let data = getFormFields(this);
+    authApi.changePassword(authUi.success, authUi.failure, data);
   });
 
-  $('#create-game').on('submit', function (event) {
+//new game
+  $('#new-game-button').on('click', function (event) {
     event.preventDefault();
     let data = getFormFields(this);
-    authApi.newGame(authUi.success, authUi.failure, data);
+    authApi.newGame(authUi.newGameSuccess, authUi.failure, data, resources.gameID);
   });
 
-  // //new-game
-  //   $(() => {
-  //     authApi.newGame(authUi.newGameSuccess, authUi.failure);
-  //   });
+//get game
+$('#get-game-button').on('click', function (event, currentPlayer) {
+  event.preventDefault();
+  authApi.getGames(authUi.getGamesSuccess, authUi.failure, resources.currentPlayer);
+});
 
-  $('');
 
 //board-update
-  $('td').on('click', function(event, gameArray, id){
+  $('td').on('click', function(event, gameArray){
+    console.log(resources.gameID);
+    console.log(resources.gameArray);
     event.preventDefault();
-    authApi.boardUpdate(authUi.boardUpdateSuccess, authUi.failure, gameArray, id);
+    authApi.boardUpdate(authUi.boardUpdateSuccess, authUi.failure, gameArray, resources.gameID);
   });
 
 

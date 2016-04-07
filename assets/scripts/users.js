@@ -2,12 +2,16 @@
 
 let winner = '';
 
+let gameId = '';
+
+
 let player1 = {
 	username: '', //ajax return
   symbol: 'X',
   cssClass: 'player1',
   background:'#00a896',
-	authToken: ''
+	authToken: '',
+	id:'',
 };
 
 let player2 = {
@@ -15,7 +19,8 @@ let player2 = {
   symbol: 'O',
   cssClass:'player2',
   background: '#7b435b',
-	authToken: ''
+	authToken: '',
+	id:'',
 };
 
 //sets player info in the view
@@ -31,5 +36,6 @@ module.exports ={
   winner,
   player1,
   player2,
-  currentPlayer
+  currentPlayer,
+	gameId
 };

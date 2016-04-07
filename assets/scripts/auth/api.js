@@ -1,11 +1,13 @@
 'use strict';
 
 const app = require('../app-data');
+const users =require('../users');
+const resources = require('../resources')
 
 const signUp = (success, failure, data) => {
   $.ajax({
     method: "POST",
-    url: app.api + '/sign-up',
+    url: app.api + 'sign-up',
     data,
   })
   .done(success)
@@ -15,7 +17,7 @@ const signUp = (success, failure, data) => {
 const signIn = (success, failure, data) => {
   $.ajax({
     method: 'POST',
-    url: app.api + '/sign-in',
+    url: app.api + 'sign-in',
     data,
   })
   .done(success)
@@ -25,7 +27,7 @@ const signIn = (success, failure, data) => {
 const signOut = (success, failure) => {
   $.ajax({
     method: "DELETE",
-    url: app.api + '/sign-out/' + app.user1.id,
+    url: app.api + 'sign-out/' + app.user1.id,
     headers: {
       Authorization: 'Token token=' + app.user1.token
     },
@@ -34,7 +36,7 @@ const signOut = (success, failure) => {
 
 $.ajax({
     method: "DELETE",
-    url: app.api + '/sign-out/' + app.user2.id,
+    url: app.api + 'sign-out/' + app.user2.id,
     headers: {
       Authorization: 'Token token=' + app.user2.token
     },
@@ -42,31 +44,56 @@ $.ajax({
   .fail(failure);
   };
 
-const updateBoard = (success, failure, data, id) => {
+
+const changePassword = (success, failure, data) => {
   $.ajax({
     method: "PATCH",
-    url: app.api + id,
-    processData: false,
-    data
+    url: app.api + 'change-password/' + users.currentPlayer.id,
+    data,
+    headers: {
+      Authorization: "Token token=" + users.currentPlayer.authToken
+    },
   }).done(success)
   .fail(failure);
 };
 
+
 const newGame = (success, failure, data) => {
-  console.log(app);
   $.ajax({
     method: "POST",
-    url: app.api + '/games',
+    url: app.api + 'games',
     data,
     headers: {
-      Authorization: "Token token=" + app.user1.token
+      Authorization: "Token token=" + users.currentPlayer.authToken
     }
   })
   .done(success)
   .fail(failure);
-  console.log("ran through");
 };
 
+const boardUpdate = (success, failure, data, id) => {
+  $.ajax({
+    method: "PATCH",
+    url: app.api + "games/" + resources.gameID,
+    processData: false,
+    data,
+    headers: {
+      Authorization: "Token token=" + users.currentPlayer.authToken
+    }
+  }).done(success)
+  .fail(failure);
+};
+
+const getGames = (success, failure, currentPlayer) => {
+  $.ajax({
+    method: "GET",
+    url: app.api + "games",
+    headers: {
+      Authorization: currentPlayer
+    },
+  }).done(success)
+  .fail(failure);
+};
 
 
 
@@ -74,6 +101,8 @@ module.exports = {
   signUp,
   signIn,
   signOut,
-  updateBoard,
-  newGame
+  boardUpdate,
+  newGame,
+  changePassword,
+  getGames
 };

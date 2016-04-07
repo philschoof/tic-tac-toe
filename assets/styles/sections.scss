@@ -34,7 +34,8 @@ body {
 
 }
 
-.login:hover {
+.login:hover,
+.password:hover {
   background: $login-hover;
   color: $white;
 }
@@ -44,7 +45,8 @@ body {
   color: $white;
 }
 
-.login-fields {
+.login-fields,
+.change-password-fields {
   background: $login-hover;
   border: $border-black;
   box-sizing: border-box;
@@ -58,7 +60,8 @@ body {
   z-index: 1;
 }
 
-.login-fields input {
+.login-fields input,
+.change-password-fields input {
   border-radius: 5%;
   display: block;
   font-size: 18px;
@@ -100,12 +103,11 @@ body {
   width: 90%;
 }
 
-.log-out {
-  display: none;
-}
-
+.sign-out,
 .change-password {
   display: none;
+  float: left;
+  margin-left: 10px;
 }
 
 .content-container {
@@ -153,6 +155,11 @@ body {
   text-align: center;
   transition: .25s ease;
   width: 175px;
+}
+
+.create-game {
+  margin: 0 auto;
+  width: 75px;
 }
 
 
@@ -211,14 +218,34 @@ td:hover {
   color: $color-choice-player2;
 }
 
-@media(max-width:460px){
+@media(max-width:530px){
   .container {
     width: 100%;
   }
 
-  .login,
-  .sign-up {
+  .top-button {
     margin-left: 5px;
+  }
+
+  .user-box {
+    width: 50%;
+  }
+
+
+  table {
+    height: 350px;
+    width: 100%;
+  }
+}
+
+@media(max-width:460px){
+  .top-bar {
+    padding: 0;
+  }
+   
+  .top-button {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .user-box {

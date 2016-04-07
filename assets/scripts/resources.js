@@ -2,6 +2,7 @@
 
 let users = require('./users');
 
+let gameID;
 //board array
 
 // ordered board
@@ -9,19 +10,21 @@ let users = require('./users');
 //               $('#center-center'), $('#center-left'), $('#center-right'),
 //             $('#bottom-center'), $('#bottom-left'), $('#bottom-right')];
 
-let board = [$('#top-right'), $('#top-center'), $('#top-left'),
+let board = [  $('#top-left'),$('#top-center'),$('#top-right'),
                $('#center-left'), $('#center-center'), $('#center-right'),
              $('#bottom-left'), $('#bottom-center'), $('#bottom-right')];
 
 let gameArray = ['','','','','','','','',''];
+
+// let patchArray = [];
 
 let gameArrayMaker = function (board, gameArray) {
   for (let i = 0; i < board.length; i++) {
     if(board[i].text() !== 'undefined') {
       gameArray[i] = board[i].text();
     }
-    return gameArray;
   }
+
 };
 
 //Win outcomes
@@ -54,7 +57,6 @@ let winCheck = function(winArray){
     for (let i = 0; i < winArray.length; i++) {
       if(winArray[i].every(hasUserClass)) {
         users.winner = users.currentPlayer.username;
-        console.log(gameArray);
         $('.top-box').text(users.winner + " Wins!");
         $('.top-box').css({
           'opacity': '1',
@@ -102,5 +104,6 @@ module.exports = {
   topButtonAnimation,
   topButtonSlide,
   gameArray,
-  gameArrayMaker
+  gameArrayMaker,
+  gameID
 };

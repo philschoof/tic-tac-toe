@@ -18,6 +18,14 @@
         </form>
       </div>
 
+      <div class="change-password-fields">
+        <form id="change-password">
+            <input type="password" name="passwords[old]" value="" placeholder="Old Password">
+            <input type="password" name="passwords[new]" value="" placeholder="New Password">
+            <input type="submit" name="submit" value="Change Password">
+        </form>
+      </div>
+
       <div class="sign-up-fields">
         <form id="sign-up">
           <input type="email" name="credentials[email]" value="" placeholder="email">
@@ -29,11 +37,11 @@
 
 
       <div class="top-bar">
-        <div class="top-button title">Tic Tac Toe</div>
+        <!--<div class="top-button title">Tic Tac Toe</div>-->
         <div class="top-button sign-up">Sign Up</div>
         <div class="top-button login">Login</div>
         <div class="top-button sign-out">Log Out</div>
-        <div class="top-button change-password">Change Password</div>
+        <div class="top-button change-password">PW</div>
       </div>
 
 
@@ -67,9 +75,9 @@
 
         <div class="top-box"></div>
 
-        <form id="create-game">
+        <!--<form class='create-game' id="create-game">
           <input type="submit" name="submit" value="Start Game">
-        </form>
+        </form>-->
 
 
           <table>
@@ -91,6 +99,12 @@
           </table>
 
           <div class="new-game-button" id="new-game-button">New Game</div>
+
+          <div class="new-game-button" id="get-game-button">Get Games</div>
+          <ol class="get-game">
+
+
+          </ol>
 
 
     </div><!--close content-container-->
