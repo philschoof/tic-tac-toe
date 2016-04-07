@@ -2,9 +2,11 @@
 
 let users = require('./users');
 
-let gameID;
-//board array
+let gameID; //set by new game api function
 
+
+
+//board array
 // ordered board
 // let board = [$('#top-center'), $('#top-left'), $('#top-right'),
 //               $('#center-center'), $('#center-left'), $('#center-right'),
@@ -15,8 +17,9 @@ let board = [  $('#top-left'),$('#top-center'),$('#top-right'),
              $('#bottom-left'), $('#bottom-center'), $('#bottom-right')];
 
 let gameArray = ['','','','','','','','',''];
+let sendIndex = 0;
+let sendValue = '';
 
-// let patchArray = [];
 
 let gameArrayMaker = function (board, gameArray) {
   for (let i = 0; i < board.length; i++) {
@@ -26,6 +29,21 @@ let gameArrayMaker = function (board, gameArray) {
   }
 
 };
+
+//previous game winner
+let prevGameArray;
+let prevGameWinner;
+let prevGameFunk = function(prevGameArray) {
+  for (let i = 0; i < prevGameArray.length; i++) {
+    if (prevGameArray[i] === "X"){
+      prevGameWinner = 'X\'s won';
+    }else {
+      prevGameWinner = 'O\'s won';
+    }
+  }
+  return prevGameWinner;
+};
+
 
 //Win outcomes
 let topRowWin = [$('#top-center'), $('#top-left'), $('#top-right')];
@@ -96,6 +114,7 @@ const topButtonAnimation = function(button, clicked, fields, otherButton) {
 
 
 
+
 module.exports = {
   board,
   winArray,
@@ -105,5 +124,10 @@ module.exports = {
   topButtonSlide,
   gameArray,
   gameArrayMaker,
-  gameID
+  gameID,
+  sendIndex,
+  sendValue,
+  prevGameArray,
+  prevGameFunk,
+  prevGameWinner
 };

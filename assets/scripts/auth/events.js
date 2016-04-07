@@ -46,24 +46,21 @@ const addHandlers = () => {
   });
 
 //get game
-$('#get-game-button').on('click', function (event, currentPlayer) {
-  event.preventDefault();
-  authApi.getGames(authUi.getGamesSuccess, authUi.failure, resources.currentPlayer);
-});
-
-
-//board-update
-  $('td').on('click', function(event, gameArray){
-    console.log(resources.gameID);
-    console.log(resources.gameArray);
+  $('#get-game-button').on('click', function(event) {
     event.preventDefault();
-    authApi.boardUpdate(authUi.boardUpdateSuccess, authUi.failure, gameArray, resources.gameID);
+    authApi.getGames(authUi.getGamesSuccess, authUi.failure);
   });
 
 
 
 };//close addHandlers
 
+
+let patchFunk = function() {
+  authApi.updateGame(authUi.updateGameSuccess, authUi.failure, resources.gameArray, resources.gameID);
+};
+
 module.exports = {
   addHandlers,
+patchFunk
 };

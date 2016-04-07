@@ -45,28 +45,29 @@ const signOutSuccess = () => {
 
 
 const newGameSuccess = (data) => {
-  //users.gameId = data.game.id;
-  // let gameId = users.gameId;
-  // console.log(data.game);
-  // console.log(gameId);
-  // return gameId;
   resources.gameID = data.game.id;
+  resources.gameObject = data.game;
   console.log(resources.gameID);
+  console.log(resources.gameObject.cells);
 };
 
-const boardUpdateSuccess = (gameArray) => {
-  console.log(newGameSuccess.gameId);
-  console.log(gameArray);
-  console.log('board updated');
+const updateGameSuccess = (data) => {
+  console.log(data);
+  console.log('Patched');
+
 };
 
 
-const getGamesSuccess = (gameList) => {
-  console.log(gameList);
+const getGamesSuccess = (data) => {
+  console.log(data.game.cells);
+  resources.prevGameArray = data.game.cells;
+  console.log(resources.prevGameArray);
+  $('.prev-winner').text((resources.prevGameFunk(resources.prevGameArray)));
 };
 
-const failure = () => {
+const failure = (error) => {
   console.log("fail");
+  console.log(error);
 };
 
 
@@ -74,8 +75,8 @@ module.exports = {
   signUpSuccess,
   signInSuccess,
   signOutSuccess,
-  boardUpdateSuccess,
   newGameSuccess,
   getGamesSuccess,
+  updateGameSuccess,
   failure
 };

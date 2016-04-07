@@ -2,7 +2,7 @@
 
 const app = require('../app-data');
 const users =require('../users');
-const resources = require('../resources')
+const resources = require('../resources');
 
 const signUp = (success, failure, data) => {
   $.ajax({
@@ -71,25 +71,32 @@ const newGame = (success, failure, data) => {
   .fail(failure);
 };
 
-const boardUpdate = (success, failure, data, id) => {
-  $.ajax({
-    method: "PATCH",
-    url: app.api + "games/" + resources.gameID,
-    processData: false,
-    data,
-    headers: {
-      Authorization: "Token token=" + users.currentPlayer.authToken
-    }
-  }).done(success)
-  .fail(failure);
+const updateGame = (success, failure) => {
+ $.ajax({
+   method: 'PATCH',
+   url: app.api + 'games/' + resources.gameID,
+   data: {
+  "game": {
+    "cell": {
+      "index": resources.sendIndex,
+      "value": resources.sendValue
+    },
+  }
+},
+   headers:{
+     Authorization: "Token token=" + users.player1.authToken,
+   }
+ }).done(success)
+ .fail(failure);
 };
 
-const getGames = (success, failure, currentPlayer) => {
+
+const getGames = (success, failure) => {
   $.ajax({
     method: "GET",
-    url: app.api + "games",
+    url: app.api + "games/" + (resources.gameID - 1),
     headers: {
-      Authorization: currentPlayer
+      Authorization: "Token token=" + users.player1.authToken,
     },
   }).done(success)
   .fail(failure);
@@ -101,8 +108,8 @@ module.exports = {
   signUp,
   signIn,
   signOut,
-  boardUpdate,
   newGame,
   changePassword,
-  getGames
+  getGames,
+  updateGame
 };

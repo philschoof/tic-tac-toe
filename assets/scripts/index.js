@@ -14,7 +14,7 @@ $(() => {
 
   authEvents.addHandlers();
 
-  let currentPlayer = users.player1;
+
   let turnCount = 0;
 
   //move function
@@ -34,6 +34,13 @@ $(() => {
       	currentCell.removeClass('available');
         $(this).text(users.currentPlayer.symbol);
         currentCell.addClass(users.currentPlayer.cssClass);
+        resources.gameArrayMaker(resources.board, resources.gameArray);
+        console.log(resources.gameArray);
+        resources.sendIndex = currentCell.attr('data-index');
+        resources.sendValue = currentCell.text();
+        console.log(resources.sendValue);
+        console.log(resources.sendIndex);
+        authEvents.patchFunk();
         //winning conditions testing
         if (turnCount > 4 && users.winner === '') {
           resources.winCheck(resources.winArray);
@@ -42,7 +49,6 @@ $(() => {
             $('.top-box').css('opacity', '1');
           }
         }
-
         //switches currentPlayer
         if (users.winner === '') {
           $('.top-box').css('opacity', '0');
@@ -93,6 +99,10 @@ $(() => {
     resources.topButtonAnimation('.login', 'login-clicked', '.login-fields', '.sign-up');
     resources.topButtonAnimation('.sign-up', 'sign-up-clicked', '.sign-up-fields', '.login');
     resources.topButtonAnimation('.change-password', 'sign-up-clicked', '.change-password-fields', '.sign-out');
+    $('.sign-out').on('click', function() {
+      $('.login').show();
+      $('.sign-up').show();
+    });
   // } else {
   //   console.log('not signed in');
   //   $('.top-box').show('slow');
