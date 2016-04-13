@@ -1,11 +1,10 @@
 'use strict';
 
 const getFormFields = require('../../../lib/get-form-fields');
-
 const authApi = require('./api');
 const authUi = require('./ui');
 const resources = require('../resources');
-
+const users = require('../users.js');
 
 const addHandlers = () => {
 //sign-up
@@ -18,8 +17,15 @@ const addHandlers = () => {
 //login
   $('#login').on('submit', function (event){
     let data = getFormFields(this);
+    console.log(data);
     event.preventDefault();
-    authApi.signIn(authUi.signInSuccess, authUi.failure, data);
+    if (users.player1.username !== data.credentials.email) {
+        authApi.signIn(authUi.signInSuccess, authUi.failure, data);
+      }else {
+        $('.top-box').css("opacity", '0');
+        $('.top-box').text('Already signed in');
+        console.log("Sign in failed");
+      }
   });
 
 //sign-out
@@ -28,9 +34,8 @@ const addHandlers = () => {
   authApi.signOut(authUi.signOutSuccess, authUi.failure);
   });
 
-
 //change-password
-  $('#change-password').on('click', function (event) {
+  $('#change-password').on('submit', function (event) {
     event.preventDefault();
     let data = getFormFields(this);
     authApi.changePassword(authUi.success, authUi.failure, data);
@@ -49,8 +54,6 @@ const addHandlers = () => {
     authApi.getGames(authUi.getGamesSuccess, authUi.failure);
   });
 
-
-
 };//close addHandlers
 
 
@@ -60,5 +63,5 @@ let patchFunk = function() {
 
 module.exports = {
   addHandlers,
-patchFunk
+  patchFunk
 };

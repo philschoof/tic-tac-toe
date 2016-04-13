@@ -17,6 +17,7 @@ body {
   border: $border-black;
   border-radius: 5%;
   box-sizing: border-box;
+  cursor: pointer;
   float: right;
   height: 100%;
   margin-left: 50px;
@@ -201,6 +202,7 @@ td:hover {
   border: $border-black;
   border-radius: 5%;
   box-sizing: border-box;
+  cursor: pointer;
   height: 50px;
   margin: 40px auto;
   padding-top: 15px;
@@ -253,6 +255,7 @@ td:hover {
   }
 
   .user-box {
+    overflow: hidden;
     width: 50%;
   }
 

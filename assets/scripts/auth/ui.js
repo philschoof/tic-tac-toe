@@ -20,6 +20,8 @@ const signInSuccess = (data) => {
     $('.player1-user-name').text(users.player1.username = app.user1.email);
     users.player1.id = data.user.id;
     users.player1.authToken = data.user.token;
+    $('.top-box').css('opacity', '0');
+    $('.top-box').text('');
   } else {
     app.user2 = data.user;
     $('.player2-user-name').text(users.player2.username = app.user2.email);
@@ -32,34 +34,29 @@ const signInSuccess = (data) => {
 };
 
 const signOutSuccess = () => {
-  console.log('signed-out');
     users.player1.username = '';
     app.user1 = null;
     $('.player1-user-name').text('');
-    users.player2.username = '';
-    app.user2 = null;
+    if (users.player2.username !== ''){
+      users.player2.username = '';
+      app.user2 = null;
     $('.player2-user-name').text('');
+  }
 };
 
 
 const newGameSuccess = (data) => {
   resources.gameID = data.game.id;
   resources.gameObject = data.game;
-  console.log(resources.gameID);
-  console.log(resources.gameObject.cells);
 };
 
 const updateGameSuccess = (data) => {
-  console.log(data);
-  console.log('Patched');
 
 };
 
 
 const getGamesSuccess = (data) => {
-  console.log(data.game.cells);
   resources.prevGameArray = data.game.cells;
-  console.log(resources.prevGameArray);
   $('.top-box').css('opacity', '1');
   $('.top-box').text((resources.prevGameFunk(resources.prevGameArray)));
 };

@@ -76,6 +76,7 @@ $(() => {
       users.currentPlayer = users.player1;
       $('.player1-box').css('background', users.player1.background);
       if(users.winner !== ''){
+        $(this).css('float', "left");
         $('#get-game-button').removeClass('bottom-buttons-hidden');
 
       }

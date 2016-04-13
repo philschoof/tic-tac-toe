@@ -5,13 +5,6 @@ let users = require('./users');
 let gameID; //set by new game api function
 
 
-
-//board array
-// ordered board
-// let board = [$('#top-center'), $('#top-left'), $('#top-right'),
-//               $('#center-center'), $('#center-left'), $('#center-right'),
-//             $('#bottom-center'), $('#bottom-left'), $('#bottom-right')];
-
 let board = [  $('#top-left'),$('#top-center'),$('#top-right'),
                $('#center-left'), $('#center-center'), $('#center-right'),
              $('#bottom-left'), $('#bottom-center'), $('#bottom-right')];
@@ -20,14 +13,12 @@ let gameArray = ['','','','','','','','',''];
 let sendIndex = 0;
 let sendValue = '';
 
-
 let gameArrayMaker = function (board, gameArray) {
   for (let i = 0; i < board.length; i++) {
     if(board[i].text() !== 'undefined') {
       gameArray[i] = board[i].text();
     }
   }
-
 };
 
 //previous game winner
@@ -74,6 +65,7 @@ let winArray = [
  topRightDiagonalWin
 ];
 
+//used in winCheck array method
 let hasUserClass = function(element){
   return element.hasClass(users.currentPlayer.cssClass);
 };
@@ -91,7 +83,7 @@ let winCheck = function(winArray){
   }
 };
 
-
+//animations
 const topButtonSlide = function (button, clicked, fields) {
     $(fields).slideUp('fast');
     $(button).removeClass(clicked);

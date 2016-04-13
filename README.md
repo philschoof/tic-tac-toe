@@ -17,18 +17,21 @@ The backend interface uses Javascript, jQuery, and AJAX.
 ## Approach
 
 My approach to this project was to create the front-end first, since
-all back-end action is driven by user interaction. I tried to guide the user through the necessary sign-up/sign-in process by hiding the board until both players have signed in, and I hid the 'new game' and 'previous winner' buttons until at least one game has been played.
+all back-end action is driven by user interaction. I tried to guide the user
+through the necessary sign-up/sign-in process by hiding the board until both
+players have signed in, and I hid the 'new game' and 'previous winner' buttons
+until at least one game has been played.
 
 *[Wireframes](https://moqups.com/#!/edit/philschoof/6Oo0ssCT)
 
-*User Stories
 
-    * As a user, I want to know what cell I'm going to place my x or o in.
-    * As a developer, I want to use pseudo-classes to animate the page to make the game more interactive
-    * As a user, I want to be able to customize my game peice.
-    * As a developer, I want to include a drop down menu of icon choices that willl update the user objects 'symbol' property.
-    * As a user, I want to be able to restart a game at any time.
-    * As a developer, I plan to have a new game button that when pushed will reset the game board
+- User Stories
+ - As a user, I want to know what cell I'm going to place my x or o in.
+ - As a developer, I want to use pseudo-classes to animate the page to make the game more interactive
+ - As a user, I want to be able to customize my game peice.
+ - As a developer, I want to include a drop down menu of icon choices that willl update the user objects 'symbol' property.
+ - As a user, I want to be able to restart a game at any time.
+ - As a developer, I plan to have a new game button that when pushed will reset the game board
 
 ## Unsolved Problems
 

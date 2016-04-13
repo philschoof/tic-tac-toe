@@ -33,7 +33,7 @@ const signOut = (success, failure) => {
     },
   }).done(success)
   .fail(failure);
-
+if (app.user2){
 $.ajax({
     method: "DELETE",
     url: app.api + 'sign-out/' + app.user2.id,
@@ -42,8 +42,7 @@ $.ajax({
     },
   }).done(success)
   .fail(failure);
-  };
-
+}};
 
 const changePassword = (success, failure, data) => {
   $.ajax({
@@ -56,7 +55,6 @@ const changePassword = (success, failure, data) => {
   }).done(success)
   .fail(failure);
 };
-
 
 const newGame = (success, failure, data) => {
   $.ajax({
@@ -90,7 +88,6 @@ const updateGame = (success, failure) => {
  .fail(failure);
 };
 
-
 const getGames = (success, failure) => {
   $.ajax({
     method: "GET",
@@ -101,8 +98,6 @@ const getGames = (success, failure) => {
   }).done(success)
   .fail(failure);
 };
-
-
 
 module.exports = {
   signUp,
