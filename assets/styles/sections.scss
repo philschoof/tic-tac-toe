@@ -151,11 +151,22 @@ body {
   font-size: 25px;
   margin: 0 auto;
   min-height: 75px;
-  opacity: 0;
+  opacity: 1;
   padding: 4px;
   text-align: center;
   transition: .25s ease;
   width: 175px;
+}
+
+.tie-box {
+  border-radius: 5%;
+  box-sizing: border-box;
+  clear: both;
+  width:175px;
+  font-size: 25px;
+  margin: 0 auto;
+  display:none;
+
 }
 
 .create-game {
