@@ -42,8 +42,9 @@ $(() => {
         if (turnCount > 4 && users.winner === '') {
           resources.winCheck(resources.winArray);
           if( turnCount === 9 && users.winner === '') {
-            $('.top-box').text('Draw!');
-            $('.top-box').css('opacity', '1');
+            turnCount = 0;
+            $('.tie-box').text('Draw!');
+            $('.tie-box').show();
           }
         }
         //switches currentPlayer
@@ -76,11 +77,10 @@ $(() => {
       users.currentPlayer = users.player1;
       $('.player1-box').css('background', users.player1.background);
       if(users.winner !== ''){
-        $(this).css('float', "left");
         $('#get-game-button').removeClass('bottom-buttons-hidden');
-
       }
       users.winner = '';
+      $('.tie-box').hide();
       $('.player1-box').css("background", "users.player1.background");
       $('.player2-box').css("background", "none");
       //resets board
