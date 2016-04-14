@@ -105,6 +105,7 @@ webpackJsonp([0],[
 	    users.currentPlayer = users.player1;
 	    $('.player1-box').css('background', users.player1.background);
 	    if (users.winner !== '') {
+	      $(this).css('float', "left");
 	      $('#get-game-button').removeClass('bottom-buttons-hidden');
 	    }
 	    users.winner = '';
@@ -198,12 +199,6 @@ webpackJsonp([0],[
 
 	var gameID = void 0; //set by new game api function
 
-	//board array
-	// ordered board
-	// let board = [$('#top-center'), $('#top-left'), $('#top-right'),
-	//               $('#center-center'), $('#center-left'), $('#center-right'),
-	//             $('#bottom-center'), $('#bottom-left'), $('#bottom-right')];
-
 	var board = [$('#top-left'), $('#top-center'), $('#top-right'), $('#center-left'), $('#center-center'), $('#center-right'), $('#bottom-left'), $('#bottom-center'), $('#bottom-right')];
 
 	var gameArray = ['', '', '', '', '', '', '', '', ''];
@@ -252,6 +247,7 @@ webpackJsonp([0],[
 	// array of win outcomes
 	var winArray = [topRowWin, centerRowWin, bottomRowWin, leftColWin, centerColWin, rightColWin, topLeftDiagonalWin, topRightDiagonalWin];
 
+	//used in winCheck array method
 	var hasUserClass = function hasUserClass(element) {
 	  return element.hasClass(users.currentPlayer.cssClass);
 	};
@@ -269,6 +265,7 @@ webpackJsonp([0],[
 	  }
 	};
 
+	//animations
 	var topButtonSlide = function topButtonSlide(button, clicked, fields) {
 	  $(fields).slideUp('fast');
 	  $(button).removeClass(clicked);
@@ -321,10 +318,10 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var getFormFields = __webpack_require__(7);
-
 	var authApi = __webpack_require__(8);
 	var authUi = __webpack_require__(10);
 	var resources = __webpack_require__(5);
+	var users = __webpack_require__(4);
 
 	var addHandlers = function addHandlers() {
 	  //sign-up
@@ -337,8 +334,15 @@ webpackJsonp([0],[
 	  //login
 	  $('#login').on('submit', function (event) {
 	    var data = getFormFields(this);
+	    console.log(data);
 	    event.preventDefault();
-	    authApi.signIn(authUi.signInSuccess, authUi.failure, data);
+	    if (users.player1.username !== data.credentials.email) {
+	      authApi.signIn(authUi.signInSuccess, authUi.failure, data);
+	    } else {
+	      $('.top-box').css("opacity", '0');
+	      $('.top-box').text('Already signed in');
+	      console.log("Sign in failed");
+	    }
 	  });
 
 	  //sign-out
@@ -348,7 +352,7 @@ webpackJsonp([0],[
 	  });
 
 	  //change-password
-	  $('#change-password').on('click', function (event) {
+	  $('#change-password').on('submit', function (event) {
 	    event.preventDefault();
 	    var data = getFormFields(this);
 	    authApi.changePassword(authUi.success, authUi.failure, data);
@@ -477,14 +481,15 @@ webpackJsonp([0],[
 	      Authorization: 'Token token=' + app.user1.token
 	    }
 	  }).done(success).fail(failure);
-
-	  $.ajax({
-	    method: "DELETE",
-	    url: app.api + 'sign-out/' + app.user2.id,
-	    headers: {
-	      Authorization: 'Token token=' + app.user2.token
-	    }
-	  }).done(success).fail(failure);
+	  if (app.user2) {
+	    $.ajax({
+	      method: "DELETE",
+	      url: app.api + 'sign-out/' + app.user2.id,
+	      headers: {
+	        Authorization: 'Token token=' + app.user2.token
+	      }
+	    }).done(success).fail(failure);
+	  }
 	};
 
 	var changePassword = function changePassword(success, failure, data) {
@@ -587,6 +592,8 @@ webpackJsonp([0],[
 	    $('.player1-user-name').text(users.player1.username = app.user1.email);
 	    users.player1.id = data.user.id;
 	    users.player1.authToken = data.user.token;
+	    $('.top-box').css('opacity', '0');
+	    $('.top-box').text('');
 	  } else {
 	    app.user2 = data.user;
 	    $('.player2-user-name').text(users.player2.username = app.user2.email);
@@ -599,31 +606,25 @@ webpackJsonp([0],[
 	};
 
 	var signOutSuccess = function signOutSuccess() {
-	  console.log('signed-out');
 	  users.player1.username = '';
 	  app.user1 = null;
 	  $('.player1-user-name').text('');
-	  users.player2.username = '';
-	  app.user2 = null;
-	  $('.player2-user-name').text('');
+	  if (users.player2.username !== '') {
+	    users.player2.username = '';
+	    app.user2 = null;
+	    $('.player2-user-name').text('');
+	  }
 	};
 
 	var newGameSuccess = function newGameSuccess(data) {
 	  resources.gameID = data.game.id;
 	  resources.gameObject = data.game;
-	  console.log(resources.gameID);
-	  console.log(resources.gameObject.cells);
 	};
 
-	var updateGameSuccess = function updateGameSuccess(data) {
-	  console.log(data);
-	  console.log('Patched');
-	};
+	var updateGameSuccess = function updateGameSuccess(data) {};
 
 	var getGamesSuccess = function getGamesSuccess(data) {
-	  console.log(data.game.cells);
 	  resources.prevGameArray = data.game.cells;
-	  console.log(resources.prevGameArray);
 	  $('.top-box').css('opacity', '1');
 	  $('.top-box').text(resources.prevGameFunk(resources.prevGameArray));
 	};
@@ -679,7 +680,7 @@ webpackJsonp([0],[
 
 
 	// module
-	exports.push([module.id, "body {\n  background: #eee;\n  margin: 0; }\n\n.top-bar {\n  background: #808080;\n  border-bottom: 1px solid #808080;\n  box-sizing: border-box;\n  height: 50px;\n  padding: 2px 40px;\n  width: 100%; }\n\n.top-button {\n  background: #eee;\n  border: 1px solid #000;\n  border-radius: 5%;\n  box-sizing: border-box;\n  float: right;\n  height: 100%;\n  margin-left: 50px;\n  padding-top: 15px;\n  text-align: center;\n  transition: .25s ease;\n  width: 80px;\n  z-index: 1; }\n\n.title {\n  float: left;\n  margin-left: 5px;\n  width: 100px; }\n\n.login:hover,\n.password:hover {\n  background: #7f3fbf;\n  color: #fff; }\n\n.login-clicked {\n  background: #7f3fbf;\n  color: #fff; }\n\n.login-fields,\n.change-password-fields {\n  background: #7f3fbf;\n  border: 1px solid #000;\n  box-sizing: border-box;\n  display: none;\n  height: 200px;\n  padding: 3px 10px;\n  position: absolute;\n  right: 15px;\n  top: 50px;\n  width: 236px;\n  z-index: 1; }\n\n.login-fields input,\n.change-password-fields input {\n  border-radius: 5%;\n  display: block;\n  font-size: 18px;\n  height: 35px;\n  margin: 15px 0;\n  width: 90%; }\n\n.sign-up:hover {\n  background: #3fbf3f;\n  color: #fff; }\n\n.sign-up-clicked {\n  background: #3fbf3f;\n  color: #fff; }\n\n.sign-up-fields {\n  background: #3fbf3f;\n  border: 1px solid #000;\n  box-sizing: border-box;\n  display: none;\n  height: 230px;\n  padding: 3px 10px;\n  position: absolute;\n  right: 15px;\n  top: 50px;\n  width: 236px;\n  z-index: 1; }\n\n.sign-up-fields input {\n  border-radius: 5%;\n  display: block;\n  font-size: 18px;\n  height: 35px;\n  margin: 15px 0;\n  width: 90%; }\n\n.sign-out,\n.change-password {\n  display: none;\n  float: left;\n  margin-left: 10px; }\n\n.content-container {\n  border-left: 1px solid #808080;\n  border-right: 1px solid #808080;\n  margin: 0 auto;\n  max-width: 960px;\n  padding: 0 15px;\n  position: relative;\n  top: 25px; }\n\n.user-box {\n  border-radius: 5%;\n  box-sizing: border-box;\n  font-size: 25px;\n  height: 100px;\n  margin-bottom: 15px;\n  padding: 10px;\n  transition: .25s ease;\n  width: 200px; }\n\n.player1-box {\n  background: #00a896;\n  float: left; }\n\n.player2-box {\n  background: #7b435b;\n  float: right;\n  text-align: right; }\n\n.top-box {\n  border-radius: 5%;\n  box-sizing: border-box;\n  clear: both;\n  color: #eee;\n  font-size: 25px;\n  margin: 0 auto;\n  min-height: 75px;\n  opacity: 0;\n  padding: 4px;\n  text-align: center;\n  transition: .25s ease;\n  width: 175px; }\n\n.create-game {\n  margin: 0 auto;\n  width: 75px; }\n\ntable {\n  box-sizing: border-box;\n  color: #808080;\n  height: 400px;\n  margin: 0 auto;\n  position: relative;\n  top: 13px;\n  width: 400px; }\n\ntd {\n  border-radius: 5%;\n  font-size: 30px;\n  height: 40px;\n  text-align: center;\n  transition: .3s ease;\n  width: 40px; }\n\ntd:hover {\n  color: #fff; }\n\n.center-col {\n  border-left: 1px solid #000;\n  border-right: 1px solid #000; }\n\n.center-row {\n  border-bottom: 1px solid #000;\n  border-top: 1px solid #000; }\n\n.new-game-button {\n  border: 1px solid #000;\n  border-radius: 5%;\n  box-sizing: border-box;\n  height: 50px;\n  margin: 40px auto;\n  padding-top: 15px;\n  text-align: center;\n  transition: .25s ease;\n  width: 105px; }\n\n.bottom-buttons-hidden {\n  display: none; }\n\n.player1 {\n  color: #00a896; }\n\n.player2 {\n  color: #7b435b; }\n\n@media (max-width: 530px) {\n  .container {\n    width: 100%; }\n  .top-button {\n    margin-left: 5px; }\n  .user-box {\n    width: 50%; }\n  table {\n    height: 350px;\n    width: 100%; } }\n\n@media (max-width: 460px) {\n  .top-bar {\n    padding: 0; }\n  .top-button {\n    margin-left: 0;\n    margin-right: 0; }\n  .user-box {\n    width: 50%; }\n  table {\n    height: 350px;\n    width: 100%; } }\n\n.prev-winner {\n  text-align: center; }\n\n.top-left:hover {\n  background: #05668d; }\n\n.top-center:hover {\n  background: #028090; }\n\n.top-right:hover {\n  background: #273496; }\n\n.center-left:hover {\n  background: #1e2749; }\n\n.center-center:hover {\n  background: #30343f; }\n\n.center-right:hover {\n  background: #05668d; }\n\n.bottom-left:hover {\n  background: #028090; }\n\n.bottom-center:hover {\n  background: #273496; }\n\n.bottom-right:hover {\n  background: #1e2749; }\n\n.new-game-button:hover {\n  background: #808080; }\n", ""]);
+	exports.push([module.id, "body {\n  background: #eee;\n  margin: 0; }\n\n.top-bar {\n  background: #808080;\n  border-bottom: 1px solid #808080;\n  box-sizing: border-box;\n  height: 50px;\n  padding: 2px 40px;\n  width: 100%; }\n\n.top-button {\n  background: #eee;\n  border: 1px solid #000;\n  border-radius: 5%;\n  box-sizing: border-box;\n  cursor: pointer;\n  float: right;\n  height: 100%;\n  margin-left: 50px;\n  padding-top: 15px;\n  text-align: center;\n  transition: .25s ease;\n  width: 80px;\n  z-index: 1; }\n\n.title {\n  float: left;\n  margin-left: 5px;\n  width: 100px; }\n\n.login:hover,\n.password:hover {\n  background: #7f3fbf;\n  color: #fff; }\n\n.login-clicked {\n  background: #7f3fbf;\n  color: #fff; }\n\n.login-fields,\n.change-password-fields {\n  background: #7f3fbf;\n  border: 1px solid #000;\n  box-sizing: border-box;\n  display: none;\n  height: 200px;\n  padding: 3px 10px;\n  position: absolute;\n  right: 15px;\n  top: 50px;\n  width: 236px;\n  z-index: 1; }\n\n.login-fields input,\n.change-password-fields input {\n  border-radius: 5%;\n  display: block;\n  font-size: 18px;\n  height: 35px;\n  margin: 15px 0;\n  width: 90%; }\n\n.sign-up:hover {\n  background: #3fbf3f;\n  color: #fff; }\n\n.sign-up-clicked {\n  background: #3fbf3f;\n  color: #fff; }\n\n.sign-up-fields {\n  background: #3fbf3f;\n  border: 1px solid #000;\n  box-sizing: border-box;\n  display: none;\n  height: 230px;\n  padding: 3px 10px;\n  position: absolute;\n  right: 15px;\n  top: 50px;\n  width: 236px;\n  z-index: 1; }\n\n.sign-up-fields input {\n  border-radius: 5%;\n  display: block;\n  font-size: 18px;\n  height: 35px;\n  margin: 15px 0;\n  width: 90%; }\n\n.sign-out,\n.change-password {\n  display: none;\n  float: left;\n  margin-left: 10px; }\n\n.content-container {\n  border-left: 1px solid #808080;\n  border-right: 1px solid #808080;\n  margin: 0 auto;\n  max-width: 960px;\n  padding: 0 15px;\n  position: relative;\n  top: 25px; }\n\n.user-box {\n  border-radius: 5%;\n  box-sizing: border-box;\n  font-size: 25px;\n  height: 100px;\n  margin-bottom: 15px;\n  padding: 10px;\n  transition: .25s ease;\n  width: 200px; }\n\n.player1-box {\n  background: #00a896;\n  float: left; }\n\n.player2-box {\n  background: #7b435b;\n  float: right;\n  text-align: right; }\n\n.top-box {\n  border-radius: 5%;\n  box-sizing: border-box;\n  clear: both;\n  color: #eee;\n  font-size: 25px;\n  margin: 0 auto;\n  min-height: 75px;\n  opacity: 0;\n  padding: 4px;\n  text-align: center;\n  transition: .25s ease;\n  width: 175px; }\n\n.create-game {\n  margin: 0 auto;\n  width: 75px; }\n\ntable {\n  box-sizing: border-box;\n  color: #808080;\n  height: 400px;\n  margin: 0 auto;\n  position: relative;\n  top: 13px;\n  width: 400px; }\n\ntd {\n  border-radius: 5%;\n  font-size: 30px;\n  height: 40px;\n  text-align: center;\n  transition: .3s ease;\n  width: 40px; }\n\ntd:hover {\n  color: #fff; }\n\n.center-col {\n  border-left: 1px solid #000;\n  border-right: 1px solid #000; }\n\n.center-row {\n  border-bottom: 1px solid #000;\n  border-top: 1px solid #000; }\n\n.new-game-button {\n  border: 1px solid #000;\n  border-radius: 5%;\n  box-sizing: border-box;\n  cursor: pointer;\n  height: 50px;\n  margin: 40px auto;\n  padding-top: 15px;\n  text-align: center;\n  transition: .25s ease;\n  width: 105px; }\n\n.bottom-buttons-hidden {\n  display: none; }\n\n.player1 {\n  color: #00a896; }\n\n.player2 {\n  color: #7b435b; }\n\n@media (max-width: 530px) {\n  .container {\n    width: 100%; }\n  .top-button {\n    margin-left: 5px; }\n  .user-box {\n    width: 50%; }\n  table {\n    height: 350px;\n    width: 100%; } }\n\n@media (max-width: 460px) {\n  .top-bar {\n    padding: 0; }\n  .top-button {\n    margin-left: 0;\n    margin-right: 0; }\n  .user-box {\n    overflow: hidden;\n    width: 50%; }\n  table {\n    height: 350px;\n    width: 100%; } }\n\n.prev-winner {\n  text-align: center; }\n\n.top-left:hover {\n  background: #05668d; }\n\n.top-center:hover {\n  background: #028090; }\n\n.top-right:hover {\n  background: #273496; }\n\n.center-left:hover {\n  background: #1e2749; }\n\n.center-center:hover {\n  background: #30343f; }\n\n.center-right:hover {\n  background: #05668d; }\n\n.bottom-left:hover {\n  background: #028090; }\n\n.bottom-center:hover {\n  background: #273496; }\n\n.bottom-right:hover {\n  background: #1e2749; }\n\n.new-game-button:hover {\n  background: #808080; }\n", ""]);
 
 	// exports
 
